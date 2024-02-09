@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  my_blog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mysql:latest
+    container_name: in311_blog
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: my_blog
+      MYSQL_USER: blogger
+      MYSQL_PASSWORD: travel
+    ports:
+      - "3307:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: in311_blog
+    depends_on:
+      - my_blog
+    ports:
+      - "8181:80"
