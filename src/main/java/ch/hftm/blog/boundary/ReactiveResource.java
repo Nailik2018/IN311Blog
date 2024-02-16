@@ -1,11 +1,8 @@
 package ch.hftm.blog.boundary;
-
 import ch.hftm.blog.entity.Blog;
 import ch.hftm.blog.control.BlogRepository;
 import java.time.Duration;
 import java.util.Optional;
-
-import ch.hftm.blog.control.BlogRepository;
 import org.jboss.resteasy.reactive.RestStreamElementType;
 import io.smallrye.common.annotation.Blocking;
 import io.smallrye.mutiny.Multi;
@@ -69,7 +66,6 @@ public class ReactiveResource {
                 .onItem().transform(n -> String.format("hello %s - %d", name, n))
                 .select().first(count);
     }
-
 
     @GET
     @Produces(MediaType.SERVER_SENT_EVENTS)
